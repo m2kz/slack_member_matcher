@@ -52,7 +52,7 @@ def init():
                 r[2] = 0
             slack_csv[r[1]] = r[2]
 
-    # People who are on Slack, but aren't members
+    print("People who are on Slack, but aren't members")
     slack_person_nonmembers = list()
     for slack_person_email, slack_person_access in slack_csv.items():
         if slack_person_access == 1:
@@ -62,7 +62,7 @@ def init():
                 slack_person_nonmembers.append(slack_person_email)
     print(slack_person_nonmembers)
 
-    # People who are members, but aren't on Slack
+    print("People who are members, but aren't on Slack")
     members_nonslack_person = list()
     for member_email, member_access in panel_csv.items():
         if member_access == 1:
@@ -74,9 +74,11 @@ def init():
 
     # People who aren't mentioned on one of the lists
     diff_dicts = DictDiffer(panel_csv, slack_csv)
-    # People who are on Slack list but aren't mentioned on panel
+
+    print("People who are on Slack list but aren't mentioned on panel")
     print(diff_dicts.removed())
-    # People who are on panel but aren't mentioned on Slack list
+
+    print("People who are on panel but aren't mentioned on Slack list")
     print(diff_dicts.added())
 
 
